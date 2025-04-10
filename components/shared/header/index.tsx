@@ -42,7 +42,7 @@ export default async function Header() {
       <div className='flex items-center px-3 mb-[1px] '  style={{ backgroundColor: '#2A5310' }}>
         <Button 
             variant='ghost' 
-            className='header-button flex items-center gap-1 text-base [&_svg]:size-8'>
+            className='dark header-button flex items-center gap-1 text-base [&_svg]:size-8'>
                 <MenuIcon/>
                 All
             </Button>
