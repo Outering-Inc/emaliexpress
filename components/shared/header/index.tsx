@@ -12,7 +12,7 @@ import { MenuIcon } from 'lucide-react'
 export default async function Header() {
  
   return (
-    <header className='bg-black text-white' >
+    <header className='text-white'style={{ backgroundColor: '#1A330A' }} >
       <div className='px-2'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center'>
@@ -39,7 +39,7 @@ export default async function Header() {
           <Search />
         </div>
       </div>
-      <div className='flex items-center px-3 mb-[1px] '  style={{ backgroundColor: '#2A5310' }}>
+      <div className='bg-green-100 text-black flex items-center px-3 mb-[1px] ' >
         <Button 
             variant='ghost' 
             className='dark header-button flex items-center gap-1 text-base [&_svg]:size-8'>
