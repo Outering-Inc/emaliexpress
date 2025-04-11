@@ -1,7 +1,7 @@
 'use server'
 
 import { connectToDatabase } from '@/lib/db'
-import Product  from '@/lib/db/models/product.model'
+import Product, { IProduct }  from '@/lib/db/models/product.model'
 
 // GET ALL PRODUCTS FOR ADMIN
 export async function getAllProductsForAdmin(){
@@ -14,6 +14,7 @@ export async function getAllProductsForAdmin(){
   return categories
 }
 
+// GET ALL CATEGORIES
 export async function getAllCategories() {
     await connectToDatabase()
     const categories = await Product.find({ isPublished: true }).distinct(
@@ -22,6 +23,7 @@ export async function getAllCategories() {
     return categories
   }
 
+  // GET PRODUCTS FOR CARD
 export async function getProductsForCard({
   tag,
   limit = 4,
@@ -45,4 +47,22 @@ export async function getProductsForCard({
     href: string
     image: string
   }[]
+}
+
+// GET PRODUCTS BY TAG
+export async function getProductsByTag({
+  tag,
+  limit = 10,
+}: {
+  tag: string
+  limit?: number
+}) {
+  await connectToDatabase()
+  const products = await Product.find({
+    tags: { $in: [tag] },
+    isPublished: true,
+  })
+    .sort({ createdAt: 'desc' })
+    .limit(limit)
+  return JSON.parse(JSON.stringify(products)) as IProduct[]
 }
