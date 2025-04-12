@@ -5,8 +5,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+  
 } from '@/components/ui/carousel'
 import ProductCard from './product-card'
 import { IProduct } from '@/lib/db/models/product.model'
@@ -48,8 +47,8 @@ export default function ProductSlider({
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className='left-0' />
-        <CarouselNext className='right-0' />
+        {/* <CarouselPrevious className='left-0'/>*/}
+        {/* <CarouselNext className='right-0' /> */}
       </Carousel>
     </div>
   )
