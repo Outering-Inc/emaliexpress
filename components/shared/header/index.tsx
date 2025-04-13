@@ -12,7 +12,7 @@ import { MenuIcon } from 'lucide-react'
 export default async function Header() {
  
   return (
-    <header className='text-white'style={{ backgroundColor: '#1A330A' }} >
+    <header className='text-white'style={{ backgroundColor: ' #023430' }} >
       <div className='px-2'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center'>
@@ -21,7 +21,7 @@ export default async function Header() {
               className='flex items-center header-button font-extrabold text-2xl m-1 '
             >
               <Image
-                src='icons/logo.svg'
+                src='/icons/logo.svg'
                 width={100}
                 height={100}
                 alt={`${APP_NAME} logo`}
@@ -39,7 +39,7 @@ export default async function Header() {
           <Search />
         </div>
       </div>
-      <div className='bg-green-100 text-black flex items-center px-3 mb-[1px] ' >
+      <div className=' text-white flex items-center px-3 mb-[1px] 'style={{ backgroundColor: ' #00593F' }} >
         <Button 
             variant='ghost' 
             className='dark header-button flex items-center gap-1 text-base [&_svg]:size-8'>
