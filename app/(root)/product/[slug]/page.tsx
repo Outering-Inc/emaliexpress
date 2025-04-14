@@ -12,6 +12,7 @@ import { Separator } from '@/components/ui/separator'
 import Rating from '@/components/shared/product/rating'
 import ProductSlider from '@/components/shared/product/product-slider'
 import BrowsingHistoryList from '@/components/shared/browsing-history-list'
+import AddToBrowsingHistory from '@/components/shared/product/add-to-browsing-history'
 
 
 export async function generateMetadata(props: {
