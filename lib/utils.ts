@@ -33,3 +33,12 @@ export const toSlug = (text: string): string =>
     export function formatNumber(number: number) {
       return NUMBER_FORMATTER.format(number)
     }   
+
+    // PROMPT: [ChatGTP] create round2 ts arrow function that round number to 2 decimal
+    export const round2 = (num: number) =>
+      Math.round((num + Number.EPSILON) * 100) / 100
+    
+    // PROMPT: [ChatGTP] create generateId ts arrow function that generate random id for items in the shopping cart
+    export const generateId = () =>
+      Array.from({ length: 24 }, () => Math.floor(Math.random() * 10)).join('')
+    

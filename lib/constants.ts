@@ -4,4 +4,5 @@ export const APP_DESCRIPTION =
     process.env.NEXT_PUBLIC_APP_DESCRIPTION || 
     'Marketplace app,build with Next.js, Tailwind CSS, and MongoDB'  
 
-export const PAGE_SIZE = Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 10)     
+export const PAGE_SIZE = Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 10)   
+export const FREE_SHIPPING_PRICE = Number(process.env.NEXT_PUBLIC_FREE_SHIPPING_PRICE || 35)  
