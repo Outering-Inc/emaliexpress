@@ -1,4 +1,4 @@
-import { CartSchema, OrderItemSchema, ProductInputSchema } from "@/lib/schema-validator";
+import { CartSchema, OrderItemSchema, ProductInputSchema } from "@/lib/validator";
 import {  z } from 'zod'
 
 export type IProductInput = z.infer<typeof ProductInputSchema>
