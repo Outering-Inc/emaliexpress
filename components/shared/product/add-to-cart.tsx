@@ -8,9 +8,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import useCartStore from '@/hooks/use-cart-store'
+import useCartStore from '@/hooks/stores/use-cart-store'
 // Replace old use-toast with new use-sonner
-import { useSonner } from '@/hooks/use-sonner';
+import { useSonner } from '@/hooks/client/use-sonner';
 import { OrderItem } from '@/types'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'

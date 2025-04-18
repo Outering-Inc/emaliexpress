@@ -1,5 +1,5 @@
 'use client'
-import BrowsingHistoryList from '@/components/shared/browsing-history-list'
+import BrowsingHistoryList from '@/components/shared/common/browsing-history-list'
 import ProductPrice from '@/components/shared/product/product-price'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import useCartStore from '@/hooks/use-cart-store'
+import useCartStore from '@/hooks/stores/use-cart-store'
 
 import { APP_NAME, FREE_SHIPPING_PRICE } from '@/lib/constants'
 

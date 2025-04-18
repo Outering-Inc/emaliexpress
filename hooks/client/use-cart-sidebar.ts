@@ -1,6 +1,6 @@
 import { usePathname } from 'next/navigation'
 import useDeviceType from './use-device-type'
-import useCartStore from './use-cart-store'
+import useCartStore from '../stores/use-cart-store'
 
 //Check this code again for locale update to final code
 const isNotInPaths = (s: string) => {

@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import useCartSidebar from '@/hooks/use-cart-sidebar'
+import useCartSidebar from '@/hooks/client/use-cart-sidebar'
 import CartSidebar from '@/components/shared/cart/cart-sidebar'
 import { Toaster } from '@/components/ui/sonner'
 

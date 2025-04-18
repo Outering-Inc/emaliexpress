@@ -2,10 +2,10 @@
 
 import { ShoppingCartIcon } from 'lucide-react'
 import Link from 'next/link'
-import useIsMounted from '@/hooks/use-is-mounted'
+import useIsMounted from '@/hooks/client/use-is-mounted'
 import { cn } from '@/lib/utils'
-import useCartStore from '@/hooks/use-cart-store'
-import useCartSidebar from '@/hooks/use-cart-sidebar'
+import useCartStore from '@/hooks/stores/use-cart-store'
+import useCartSidebar from '@/hooks/client/use-cart-sidebar'
 
 export default function CartButton() {
   const isMounted = useIsMounted()
