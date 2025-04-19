@@ -4,6 +4,7 @@ import { connectToDatabase } from '.'
 import * as ProductModel from './models/product.model'
 import { cwd } from 'process'
 import { loadEnvConfig } from '@next/env'
+import User from './models/user.model'
 
 // Load environment variables
 loadEnvConfig(cwd())
@@ -13,14 +14,16 @@ const Product = ProductModel.default
 
 const main = async () => {
   try {
-    const { products } = data
+    const { products,users } = data
 
     await connectToDatabase(process.env.MONGODB_URI)
 
     await Product.deleteMany()
+    const createUser = await User.insertMany(users)
     const createdProducts = await Product.insertMany(products)
 
     console.log({
+      createUser,
       createdProducts,
       message: 'Seeded database successfully',
     })
