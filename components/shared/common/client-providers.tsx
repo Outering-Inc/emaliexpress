@@ -2,7 +2,8 @@
 import React from 'react'
 import useCartSidebar from '@/hooks/client/use-cart-sidebar'
 import CartSidebar from '@/components/shared/cart/cart-sidebar'
-import { Toaster } from '@/components/ui/sonner'
+import { Toaster } from '@/components/ui/toaster'
+
 
 
 export default function ClientProviders({

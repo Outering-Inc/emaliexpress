@@ -1,9 +1,20 @@
-import NextAuth from 'next-auth'
-import authConfig from './auth.config'
+// middleware.ts
+import { NextResponse } from "next/server"
+import type { NextRequest } from "next/server"
 
-NextAuth(authConfig)
+export function middleware(request: NextRequest) {
+  // Example logic (can be customized)
+  const { pathname } = request.nextUrl
 
+  if (pathname === "/admin") {
+    // Example: redirect to login
+    return NextResponse.redirect(new URL("/login", request.url))
+  }
+
+  return NextResponse.next()
+}
+
+// (optional) define where the middleware should run
 export const config = {
-  // Skip all paths that should not be internationalized
-  matcher: ['/((?!api|_next/static|_next/image |favicon.ico).*)'],
+  matcher: ["/admin/:path*"], // only run on specific paths
 }

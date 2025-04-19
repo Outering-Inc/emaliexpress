@@ -8,9 +8,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { useToast } from '@/hooks/client/use-toast'
 import useCartStore from '@/hooks/stores/use-cart-store'
 // Replace old use-toast with new use-sonner
-import { useSonner } from '@/hooks/client/use-sonner';
+
 import { OrderItem } from '@/types'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -23,7 +24,7 @@ export default function AddToCart({
   minimal?: boolean
 }) {
   const router = useRouter()
-  const { toast } = useSonner()
+  const { toast } = useToast()
   const { addItem } = useCartStore()
 
   const [quantity, setQuantity] = useState(1)
