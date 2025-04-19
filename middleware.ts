@@ -1,4 +1,5 @@
 // middleware.ts
+//To handle request that are sent to the server
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 

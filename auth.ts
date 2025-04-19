@@ -64,6 +64,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
+  //used for third-party authentication providers
   callbacks: {
     jwt: async ({ token, user, trigger, session }) => {
       if (user) {
