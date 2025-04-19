@@ -1,9 +1,7 @@
+// app/auth/sign-in/SignInForm.tsx
 'use client'
-import { redirect, useSearchParams } from 'next/navigation'
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import {
   Form,
   FormControl,
@@ -12,28 +10,25 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import Link from 'next/link'
+
 import { IUserSignIn } from '@/types'
-import { signInWithCredentials } from '@/lib/actions/user.actions'
+import { UserSignInSchema } from '@/lib/validator'
 
 import { toast } from '@/hooks/client/use-toast'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { UserSignInSchema } from '@/lib/validator'
-import { isRedirectError } from 'next/dist/client/components/redirect-error'
+import { APP_NAME } from '@/lib/constants'
+import { signInHandler } from './signInActions'
 
 const signInDefaultValues =
   process.env.NODE_ENV === 'development'
-    ? {
-        email: 'admin@example.com',
-        password: '123456',
-      }
-    : {
-        email: '',
-        password: '',
-      }
+    ? { email: 'admin@example.com', password: '123456' }
+    : { email: '', password: '' }
 
 export default function CredentialsSignInForm() {
-  
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') || '/'
 
@@ -45,19 +40,12 @@ export default function CredentialsSignInForm() {
   const { control, handleSubmit } = form
 
   const onSubmit = async (data: IUserSignIn) => {
-    try {
-      await signInWithCredentials({
-        email: data.email,
-        password: data.password,
-      })
-      redirect(callbackUrl)
-    } catch (error) {
-      if (isRedirectError(error)) {
-        throw error
-      }
+    const result = await signInHandler(data, callbackUrl)
+
+    if (result?.error) {
       toast({
         title: 'Error',
-        description: 'Invalid email or password',
+        description: result.error,
         variant: 'destructive',
       })
     }
@@ -100,13 +88,12 @@ export default function CredentialsSignInForm() {
             )}
           />
 
-          <div>
-            <Button type='submit'>Sign In</Button>
-          </div>
+          <Button type='submit'>Sign In</Button>
+
           <div className='text-sm'>
-            By signing in, you agree to {site.name}&apos;s{' '}
+            By signing in, you agree to {APP_NAME}&apos;s{' '}
             <Link href='/page/conditions-of-use'>Conditions of Use</Link> and{' '}
-            <Link href='/page/privacy-policy'>Privacy Notice.</Link>
+            <Link href='/page/privacy-policy'>Privacy Notice</Link>.
           </div>
         </div>
       </form>
