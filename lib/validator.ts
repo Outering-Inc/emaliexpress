@@ -38,6 +38,7 @@ export const UserInputSchema = z.object({
   }),
 })
 
+//User Sign In Schema
 export const UserSignInSchema = z.object({
   email: Email,
   password: Password,
@@ -49,9 +50,8 @@ export const UserSignUpSchema = UserSignInSchema.extend({
   message: "Passwords don't match",
   path: ['confirmPassword'],
 })
-export const UserNameSchema = z.object({
-  name: UserName,
-})
+
+
 
       
 // Product Input Schema
