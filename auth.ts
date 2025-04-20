@@ -29,11 +29,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     maxAge: 30 * 24 * 60 * 60,
   },
   adapter: MongoDBAdapter(client),
-  providers: [
+  providers: [ //used for third-party authentication providers
     Google({
       allowDangerousEmailAccountLinking: true,
     }),
-    CredentialsProvider({
+    CredentialsProvider({  //used for local authentication
       credentials: {
         email: {
           type: 'email',
