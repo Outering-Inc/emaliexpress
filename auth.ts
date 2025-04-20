@@ -29,8 +29,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     maxAge: 30 * 24 * 60 * 60,
   },
   adapter: MongoDBAdapter(client),
-  providers: [ //used for third-party authentication providers
+  providers: [ //used for third-party authentication providers plugin
     Google({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       allowDangerousEmailAccountLinking: true,
     }),
     CredentialsProvider({  //used for local authentication
