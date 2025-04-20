@@ -21,7 +21,9 @@ import { UserSignInSchema } from '@/lib/validator'
 
 import { toast } from '@/hooks/client/use-toast'
 import { APP_NAME } from '@/lib/constants'
-import { signInHandler } from './signInActions'
+import { signInAction } from './signInAction'
+//import { signInHandler } from './signInAction'
+
 
 const signInDefaultValues =
   process.env.NODE_ENV === 'development'
@@ -40,7 +42,7 @@ export default function CredentialsSignInForm() {
   const { control, handleSubmit } = form
 
   const onSubmit = async (data: IUserSignIn) => {
-    const result = await signInHandler(data, callbackUrl)
+    const result = await signInAction(data, callbackUrl)
 
     if (result?.error) {
       toast({

@@ -6,7 +6,7 @@ import { IUserSignIn } from '@/types'
 import { signInWithCredentials } from '@/lib/actions/user.actions'
 import { isRedirectError } from 'next/dist/client/components/redirect-error'
 
-export async function signInHandler(data: IUserSignIn, callbackUrl: string) {
+export async function signInAction(data: IUserSignIn, callbackUrl: string) {
   try {
     await signInWithCredentials({
       email: data.email,
