@@ -29,15 +29,19 @@ import { ShippingAddressSchema } from '@/lib/validator'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import CheckoutFooter from './checkout-footer'
 import { ShippingAddress } from '@/types'
 import useIsMounted from '@/hooks/client/use-is-mounted'
-import Link from 'next/link'
+//import { toast } from '@/hooks/client/use-toast'
 import useCartStore from '@/hooks/stores/use-cart-store'
 import ProductPrice from '@/components/shared/product/product-price'
 import { APP_NAME, AVAILABLE_DELIVERY_DATES, AVAILABLE_PAYMENT_METHODS, DEFAULT_PAYMENT_METHOD } from '@/lib/constants'
+import { createOrder } from '@/lib/actions/order.actions'
+import { toast } from '@/hooks/client/use-toast'
+
 
 const shippingAddressDefaultValues =
   process.env.NODE_ENV === 'development'
@@ -79,6 +83,7 @@ const CheckoutForm = () => {
     updateItem,
     removeItem,
     setDeliveryDateIndex,
+    clearCart,
   } = useCartStore()
   const isMounted = useIsMounted()
 
@@ -108,9 +113,37 @@ const CheckoutForm = () => {
   const [isDeliveryDateSelected, setIsDeliveryDateSelected] =
     useState<boolean>(false)
 
-  const handlePlaceOrder = async () => {
-   //TODO
+//Define create order from order-action    
+const handlePlaceOrder = async () => {
+  const res = await createOrder({
+    items,
+    shippingAddress,
+    expectedDeliveryDate: calculateFutureDate(
+      AVAILABLE_DELIVERY_DATES[deliveryDateIndex!].daysToDeliver
+    ),
+    deliveryDateIndex,
+    paymentMethod,
+    itemsPrice,
+    shippingPrice,
+    taxPrice,
+    totalPrice,
+  })
+  if (!res.success) {
+    toast({
+      description: res.message,
+      variant: 'destructive',
+    })
+  } else {
+    toast({
+      description: res.message,
+      variant: 'default',
+    })
+    clearCart()
+    router.push(`/checkout/${res.data?.orderId}`)
   }
+}
+
+//Handle Select Payment Method
   const handleSelectPaymentMethod = () => {
     setIsAddressSelected(true)
     setIsPaymentMethodSelected(true)
