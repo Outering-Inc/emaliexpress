@@ -546,31 +546,29 @@ const CheckoutForm = () => {
                                 <ProductPrice price={item.price} plain />
                               </p>
 
+                            <div className="flex items-center">
                               <Select
                                 value={item.quantity.toString()}
-                                onValueChange={(value) => {
-                                  if (value === '0') removeItem(item)
-                                  else updateItem(item, Number(value))
-                                }}
+                                onValueChange={(value) => updateItem(item, Number(value))}
                               >
-                                <SelectTrigger className='w-24'>
-                                  <SelectValue>
-                                    Qty: {item.quantity}
-                                  </SelectValue>
+                                <SelectTrigger className="w-24">
+                                  <SelectValue>Qty: {item.quantity}</SelectValue>
                                 </SelectTrigger>
-                                <SelectContent position='popper'>
-                                  {Array.from({
-                                    length: item.countInStock,
-                                  }).map((_, i) => (
+                                <SelectContent position="popper">
+                                  {Array.from({ length: item.countInStock }).map((_, i) => (
                                     <SelectItem key={i + 1} value={`${i + 1}`}>
                                       {i + 1}
                                     </SelectItem>
                                   ))}
-                                  <SelectItem key='delete' value='0'>
-                                    Delete
-                                  </SelectItem>
                                 </SelectContent>
                               </Select>
+                              <Button
+                                className="ml-4 p-2 text-sm"
+                                onClick={() => removeItem(item)}
+                              >
+                                Delete
+                              </Button>
+                            </div>
                             </div>
                           </div>
                         ))}

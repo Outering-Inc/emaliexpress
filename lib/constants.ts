@@ -24,7 +24,12 @@ export const AVAILABLE_PAYMENT_METHODS = [
     name: 'Cash On Delivery',
     commission: 0,
     isDefault: false,
-  }
+  },
+  {
+    name: 'Mpesa',
+    commission: 0,
+    isDefault: false,
+  },
 ]
 
 export const DEFAULT_PAYMENT_METHOD = process.env.DEFAULT_PAYMENT_METHOD || 'PayPal'
