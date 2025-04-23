@@ -143,6 +143,8 @@ const handlePlaceOrder = async () => {
   }
 }
 
+//Later define the dser create order func
+
 //Handle Select Payment Method
   const handleSelectPaymentMethod = () => {
     setIsAddressSelected(true)

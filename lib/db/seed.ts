@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
+
 import data from '@/lib/data'
 import { connectToDatabase } from '.'
 import * as ProductModel from './models/product.model'

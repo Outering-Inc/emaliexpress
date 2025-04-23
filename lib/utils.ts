@@ -1,3 +1,4 @@
+import { MpesaCallback } from "@/types/mpesa"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -137,4 +138,29 @@ export const formatDateTime = (dateString: Date) => {
     dateOnly: formattedDate,
     timeOnly: formattedTime,
   }
+}
+
+// --- Mpesa Callback Utility Functions ---
+export function extractAmount(data: MpesaCallback): number {
+  return (
+    data.Body?.stkCallback?.CallbackMetadata?.Item?.find(
+      (item) => item.Name === "Amount"
+    )?.Value ?? 0
+  ) as number;
+}
+
+export function extractPhone(data: MpesaCallback): string {
+  return (
+    data.Body?.stkCallback?.CallbackMetadata?.Item?.find(
+      (item) => item.Name === "PhoneNumber"
+    )?.Value?.toString() ?? ""
+  );
+}
+
+export function extractTransactionDate(data: MpesaCallback): string {
+  return (
+    data.Body?.stkCallback?.CallbackMetadata?.Item?.find(
+      (item) => item.Name === "TransactionDate"
+    )?.Value?.toString() ?? new Date().toISOString()
+  );
 }
