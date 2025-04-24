@@ -7,6 +7,7 @@ export interface IMpesaTransactionInput {
   mpesaReceiptNumber: string
   transactionDate: string
   resultCode: number
+  status?: string
   resultDesc?: string
   merchantRequestId?: string
   checkoutRequestId?: string

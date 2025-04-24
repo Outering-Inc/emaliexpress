@@ -6,11 +6,11 @@ import {  formatError, round2 } from '../utils'
 import { AVAILABLE_DELIVERY_DATES } from '../constants'
 import { auth } from '@/auth'
 import { OrderInputSchema } from '../validator'
-import Order from '../db/models/order.model'
+import Order, { IOrder } from '../db/models/order.model'
 
 
 
-// CREATE FROM CART
+// CREATE ORDER FROM CART
 export const createOrder = async (clientSideCart: Cart) => {
   try {
     await connectToDatabase()
@@ -56,6 +56,13 @@ export const createOrderFromCart = async (
     expectedDeliveryDate: cart.expectedDeliveryDate,
   })
   return await Order.create(order)
+}
+
+//Get Order by Id
+export async function getOrderById(orderId: string): Promise<IOrder> {
+  await connectToDatabase()
+  const order = await Order.findById(orderId)
+  return JSON.parse(JSON.stringify(order))
 }
 
 //Define Dser create Order plugin here

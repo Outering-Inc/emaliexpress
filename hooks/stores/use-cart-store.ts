@@ -148,6 +148,7 @@ const useCartStore = create(
           },
         })
       },
+      // setDeliveryDateIndex
       setDeliveryDateIndex: async (index: number) => {
         const { items  } = get().cart
 

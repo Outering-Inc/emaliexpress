@@ -2,6 +2,7 @@ import { getMpesaAccessToken } from './safaricom'
 
 type STKParams = {
   phoneNumber: string
+  orderId: string
   amount: number
 }
 
