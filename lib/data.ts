@@ -915,7 +915,7 @@ const products: IProductInput[] = [
     images: ['/images/p45-1.jpg', '/images/p45-2.jpg'],
     tags: ['new-arrival', 'featured'],
     isPublished: true,
-    price: 179.95,
+    price: 1.00,
     listPrice: 200,
     avgRating: 3.66,
     numReviews: 15,

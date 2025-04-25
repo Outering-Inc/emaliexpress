@@ -1,5 +1,3 @@
-
-
 import data from '@/lib/data'
 import { connectToDatabase } from '.'
 import * as ProductModel from './models/product.model'
@@ -15,11 +13,15 @@ const Product = ProductModel.default
 
 const main = async () => {
   try {
-    const { products,users } = data
+    const { products, users } = data
 
     await connectToDatabase(process.env.MONGODB_URI)
 
+    // Clear existing collections
     await Product.deleteMany()
+    await User.deleteMany() // 🧹 clear users collection
+
+    // Insert new seed data
     const createUser = await User.insertMany(users)
     const createdProducts = await Product.insertMany(products)
 
