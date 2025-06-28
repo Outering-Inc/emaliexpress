@@ -1,6 +1,9 @@
 # inherit from a existing image to add the functionality
 FROM node:20-alpine
 
+# set a key-value label for the Docker image (maintainer)
+LABEL maintainer="Hillary Oyaro"
+
 # Set the working directory
 WORKDIR /app
 
