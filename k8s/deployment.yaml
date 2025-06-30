@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emali-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: emali-app
+  template:
+    metadata:
+      labels:
+        app: emali-app
+    spec:
+      containers:
+      - name: emali-app
+        image: registry.digitalocean.com/emaliregistry/emali-app:latest
+        ports:
+          - containerPort: 8080
+        envFrom:
+          - secretRef:
+              name: app-secrets
+      imagePullSecrets:
+        - name: registry-emaliregistry
