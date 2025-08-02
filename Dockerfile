@@ -17,6 +17,10 @@ RUN npm install
 # Copy the rest of the source files into the image.
 COPY . .
 
+# Build the application.Compile and optimize the app for production
+#Since we are using typescript and is for development for production we turn it into javascript code
+RUN npm run build
+
 # Expose the port that the application listens on.
 EXPOSE 3000
 
